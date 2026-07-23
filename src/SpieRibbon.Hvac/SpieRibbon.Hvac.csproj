@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>SpieRibbon.Hvac</AssemblyName>
+    <RootNamespace>SpieRibbon.Hvac</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Reference-only: needed to compile against the Contracts surface; Revit supplies at runtime. -->
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPI" Version="$(RevitVersion).*" />
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPIUI" Version="$(RevitVersion).*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SpieRibbon.Contracts\SpieRibbon.Contracts.csproj" Private="false" />
+  </ItemGroup>
+
+</Project>

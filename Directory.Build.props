@@ -1,0 +1,42 @@
+<Project>
+
+  <!--
+    Shared build configuration for every SPIE Ribbon project (host, contracts, modules).
+    One project is built once per Revit version via MSBuild Configurations (not TargetFrameworks):
+    Revit 2024 is .NET Framework 4.8, 2025+ is .NET 8. Build "Release R24/R25/R26" etc.
+  -->
+  <PropertyGroup>
+    <Configurations>Debug R24;Release R24;Debug R25;Release R25;Debug R26;Release R26</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(Configuration.Contains('R24'))">
+    <RevitVersion>2024</RevitVersion>
+    <TargetFramework>net48</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.Contains('R25'))">
+    <RevitVersion>2025</RevitVersion>
+    <TargetFramework>net8.0-windows</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.Contains('R26'))">
+    <RevitVersion>2026</RevitVersion>
+    <TargetFramework>net8.0-windows</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <PlatformTarget>x64</PlatformTarget>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <!-- Version-specific #if blocks in code, e.g. #if REVIT2024 -->
+    <DefineConstants>$(DefineConstants);REVIT$(RevitVersion)</DefineConstants>
+    <!--
+      Revit loads our DLLs directly (no host to read deps.json), so every non-Revit dependency
+      must physically sit next to the assembly. Class-library projects default this to false.
+    -->
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+</Project>

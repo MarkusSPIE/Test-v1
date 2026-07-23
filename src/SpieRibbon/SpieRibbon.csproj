@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>SpieRibbon</AssemblyName>
+    <RootNamespace>SpieRibbon</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Reference-only: Revit provides these at runtime. -->
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPI" Version="$(RevitVersion).*" />
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPIUI" Version="$(RevitVersion).*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Host deploys the one and only Contracts.dll; modules reference it WITHOUT copying. -->
+    <ProjectReference Include="..\SpieRibbon.Contracts\SpieRibbon.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

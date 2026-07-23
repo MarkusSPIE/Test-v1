@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>SpieRibbon.Algemeen</AssemblyName>
+    <RootNamespace>SpieRibbon.Algemeen</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Reference-only: Revit provides these at runtime. -->
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPI" Version="$(RevitVersion).*" />
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPIUI" Version="$(RevitVersion).*" />
+    <!-- ClosedXML travels with THIS module (copied into its output, then to the Modules folder). -->
+    <PackageReference Include="ClosedXML" Version="0.104.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Private=false: the host owns the single Contracts.dll; a duplicate would break type identity. -->
+    <ProjectReference Include="..\SpieRibbon.Contracts\SpieRibbon.Contracts.csproj" Private="false" />
+  </ItemGroup>
+
+</Project>

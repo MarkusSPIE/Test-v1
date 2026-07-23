@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>SpieRibbon.Contracts</AssemblyName>
+    <RootNamespace>SpieRibbon.Contracts</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Reference-only (Nice3point packages don't copy to output); Revit supplies these at runtime. -->
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPI" Version="$(RevitVersion).*" />
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPIUI" Version="$(RevitVersion).*" />
+  </ItemGroup>
+
+</Project>
