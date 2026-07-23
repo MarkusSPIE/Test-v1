@@ -43,6 +43,13 @@ Deployment note: `SpieRibbon.Ui.dll` is deployed once, in the host folder (same 
 `SpieRibbon.Contracts.dll`) - modules reference it with `Private="false"`. `Application.OnStartup`
 force-loads it early (`_ = typeof(SpieChrome);`) so it's resolvable before any module code runs,
 the same reasoning as why `Host`/`Contracts` get wired up first in that method.
+
+`SpieChrome.Apply` also wraps the window's content in a subtle 1px gray border and adds a
+decorative resize-grip icon bottom-right. Native OS chrome normally gives every window a visible
+edge/drop-shadow - `WindowStyle=None` loses that, so without the border a window can blend into
+whatever's behind it. The grip is purely visual (`IsHitTestVisible=false`) - actual resizing from
+that corner already works via `WindowChrome.ResizeBorderThickness`, so it must never be marked
+`IsHitTestVisibleInChrome` or it would swallow the drag instead of letting WindowChrome handle it.
 - **Categories** (one per module/discipline): navy, medium-weight header text, a thin red
   (`#E31C18`) underline/divider beneath it - not a full box border, just the bottom line.
   Collapsible (chevron).

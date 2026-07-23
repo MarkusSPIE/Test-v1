@@ -1,6 +1,7 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -82,7 +83,50 @@ namespace SpieRibbon.Chrome
             right.Children.Add(maximizeButton);
             right.Children.Add(closeButton);
 
+            AddOuterFrame(window);
+
             return right;
+        }
+
+        /// <summary>
+        /// Wraps the window's content in a subtle border (native chrome normally gives every
+        /// window a visible edge/drop-shadow - WindowStyle=None loses that, so without this the
+        /// window can blend into whatever's behind it) and adds a decorative resize-grip icon in
+        /// the bottom-right corner. The grip is purely visual - dragging there already resizes
+        /// the window via WindowChrome's ResizeBorderThickness, so no extra drag logic is needed;
+        /// the grip must NOT be marked IsHitTestVisibleInChrome or it would swallow that drag.
+        /// </summary>
+        private static void AddOuterFrame(Window window)
+        {
+            if (!(window.Content is UIElement existingContent))
+                return;
+
+            window.Content = null;
+
+            var border = new Border
+            {
+                BorderBrush = new SolidColorBrush(Color.FromRgb(0xCC, 0xCC, 0xCC)),
+                BorderThickness = new Thickness(1),
+                Child = existingContent
+            };
+
+            var grid = new Grid();
+            grid.Children.Add(border);
+
+            if (window.ResizeMode != ResizeMode.NoResize)
+            {
+                grid.Children.Add(new ResizeGrip
+                {
+                    Width = 16,
+                    Height = 16,
+                    HorizontalAlignment = HorizontalAlignment.Right,
+                    VerticalAlignment = VerticalAlignment.Bottom,
+                    Foreground = new SolidColorBrush(Color.FromRgb(0xAA, 0xAA, 0xAA)),
+                    IsHitTestVisible = false
+                });
+            }
+
+            window.Content = grid;
         }
 
         private static void ToggleMaximize(Window window)
