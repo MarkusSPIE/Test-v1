@@ -14,10 +14,14 @@
         <DockPanel Margin="14,12,14,14">
             <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Margin="0,0,0,10" Foreground="Gray" FontSize="12"
                        Text="Enable the modules you want to see in the toolbox. Changes apply immediately."/>
-            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
-                <Button x:Name="OkButton" Content="OK" Width="80" Margin="0,0,8,0" IsDefault="True" Click="OkButton_Click"/>
-                <Button x:Name="CancelButton" Content="Cancel" Width="80" IsCancel="True"/>
-            </StackPanel>
+            <DockPanel DockPanel.Dock="Bottom" LastChildFill="False" Margin="0,12,0,0">
+                <Button x:Name="PatchNotesButton" Content="Patch notes" DockPanel.Dock="Left"
+                        Click="PatchNotesButton_Click"/>
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                    <Button x:Name="OkButton" Content="OK" Width="80" Margin="0,0,8,0" IsDefault="True" Click="OkButton_Click"/>
+                    <Button x:Name="CancelButton" Content="Cancel" Width="80" IsCancel="True"/>
+                </StackPanel>
+            </DockPanel>
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel x:Name="ModuleCheckList"/>
             </ScrollViewer>

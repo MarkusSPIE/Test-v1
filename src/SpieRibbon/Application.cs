@@ -15,8 +15,9 @@ namespace SpieRibbon
         private const string TabName = "SPIE";
         private const string PanelName = "SPIE Ribbon";
 
-        // Single place to bump the version shown in the toolbox footer.
-        internal const string VersionLabel = "Beta v0.1";
+        // Auto-generated (see VersionInfo.g.cs) - don't hand-edit this. To bump the version,
+        // edit deploy\VERSION.txt (auto-patch-bumped by Build-Package.ps1 on every package).
+        internal const string VersionLabel = VersionInfo.Label;
 
         // Session-wide state.
         internal static SpieHost Host;

@@ -72,5 +72,11 @@ namespace SpieRibbon.UI
 
             DialogResult = true;
         }
+
+        private void PatchNotesButton_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new PatchNotesWindow { Owner = this };
+            window.ShowDialog();
+        }
     }
 }

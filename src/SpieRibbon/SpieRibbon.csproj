@@ -18,4 +18,11 @@
     <ProjectReference Include="..\SpieRibbon.Ui\SpieRibbon.Ui.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- Read at runtime via Assembly.GetManifestResourceStream("SpieRibbon.CHANGELOG.md"). -->
+    <EmbeddedResource Include="..\..\CHANGELOG.md">
+      <LogicalName>SpieRibbon.CHANGELOG.md</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

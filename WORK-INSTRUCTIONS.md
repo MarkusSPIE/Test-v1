@@ -40,13 +40,37 @@ through the next item(s) to confirm scope, list exactly what's about to be built
 - Multi-targeted per Revit version (net48 for 2024, net8.0-windows for 2025/2026) via
   `Directory.Build.props` + MSBuild configs `Debug/Release R24/R25/R26`, shared across all 8
   projects.
-- Footer: "Created by MVS - Beta v0.1" (bump `Application.VersionLabel` when versioning up -
-  this is the overall product version, separate from each tool's own `ToolItem.Version`).
+- Footer: "Created by MVS - Beta v{major}.{minor}.{patch}" - see "Versioning" below for how this
+  number moves, separate from each tool's own `ToolItem.Version`.
 - Deploy: `deploy\Build-Package.ps1` builds all 3 versions and stages
   `dist\SpieRibbon-Package\` (host/<year>, modules/<year>, Deploy-SpieRibbon.ps1, Install.bat,
   README.txt), then zips it. `deploy\Deploy-SpieRibbon.ps1` installs per-user, no admin rights -
   writes `.addin` manifest + copies host/modules into `%AppData%`.
 - Git: pushed to `https://github.com/MarkusSPIE/Test-v1.git`, branch `master`.
+
+## Versioning
+
+Two independent version numbers - don't confuse them:
+
+**Product version** (shown in the toolbox footer, format `Beta v{major}.{minor}.{patch:D2}`,
+e.g. `Beta v0.1.01`):
+- Source of truth is `deploy\VERSION.txt` (plain `major.minor.patch` line).
+- **Patch auto-bumps every time `Build-Package.ps1` runs** (without `-SkipBuild`) - it increments
+  the patch number in `VERSION.txt`, then regenerates `src\SpieRibbon\VersionInfo.g.cs` (a
+  committed, generated file - never hand-edit it) before building. This means every real
+  distributed package has a distinct, traceable version automatically - no step to remember.
+- **For a "big" update**, manually edit `deploy\VERSION.txt` - bump major or minor, reset patch
+  to `0`. The next `Build-Package.ps1` run picks it up from there (e.g. `0.1.7` -> hand-edit to
+  `0.2.0` -> next package run produces `Beta v0.2.01`).
+- Patch bumps on *packaging*, not on every commit or dev build - a version number should mean
+  "this specific thing got handed to someone," not "some code changed."
+
+**Per-tool version** (`ToolItem.Version`, shown in that tool's tooltip, e.g. `"v0.1"`):
+- **Manual only, never auto-bumped.** A tool's version means "this specific tool was changed" -
+  bump it only when you actually modify that tool's code, as part of that change. Leave every
+  other tool's version untouched when you do.
+- Every `ToolItem` must set `Version` explicitly (don't rely on the Contracts default silently) -
+  see DESIGN-SYSTEM.md's "Every tool gets a version".
 
 ## Design conventions (apply these to all new work)
 
