@@ -2,6 +2,9 @@
 
 Living spec and backlog. Source of truth for what gets built next, ahead of the code itself.
 
+See `DESIGN-SYSTEM.md` for the toolbox's visual design (brand colors, layout pattern, numbering,
+icons) - written to be portable to other SPIE plugins, not just this one.
+
 ## How we work
 
 No scheduled/automated agent - deliberately decided against it, since live-Revit verification
