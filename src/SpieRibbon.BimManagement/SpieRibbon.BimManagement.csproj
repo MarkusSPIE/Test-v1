@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>SpieRibbon.BimManagement</AssemblyName>
+    <RootNamespace>SpieRibbon.BimManagement</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Reference-only: Revit provides these at runtime. -->
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPI" Version="$(RevitVersion).*" />
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPIUI" Version="$(RevitVersion).*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Private=false: the host owns the single Contracts.dll; a duplicate would break type identity. -->
+    <ProjectReference Include="..\SpieRibbon.Contracts\SpieRibbon.Contracts.csproj" Private="false" />
+  </ItemGroup>
+
+</Project>

@@ -12,5 +12,8 @@ namespace SpieRibbon.Contracts
         public string Label { get; set; }
         public string Tooltip { get; set; }
         public Action Action { get; set; }
+
+        /// <summary>Per-tool version, e.g. "v0.1". Shown appended to the tooltip.</summary>
+        public string Version { get; set; } = "v0.1";
     }
 }

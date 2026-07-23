@@ -30,7 +30,7 @@ $srcRoot  = Join-Path $repoRoot "src"
 $sln      = Join-Path $repoRoot "SpieRibbon.sln"
 
 $versionMap = @{ 2024 = "R24"; 2025 = "R25"; 2026 = "R26" }
-$moduleProjects = @("SpieRibbon.Algemeen", "SpieRibbon.Civil", "SpieRibbon.EnI", "SpieRibbon.Hvac")
+$moduleProjects = @("SpieRibbon.Algemeen", "SpieRibbon.Civil", "SpieRibbon.EnI", "SpieRibbon.Hvac", "SpieRibbon.BimManagement")
 
 $packageDir = Join-Path $repoRoot "dist\SpieRibbon-Package"
 

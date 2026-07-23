@@ -72,10 +72,14 @@ namespace SpieRibbon.UI
 
             foreach (ToolItem tool in group.Tools)
             {
+                string tooltip = string.IsNullOrEmpty(tool.Version)
+                    ? tool.Tooltip
+                    : string.Format("{0} ({1})", tool.Tooltip, tool.Version);
+
                 var button = new Button
                 {
                     Content = tool.Label,
-                    ToolTip = tool.Tooltip,
+                    ToolTip = tooltip,
                     HorizontalContentAlignment = HorizontalAlignment.Left,
                     Padding = new Thickness(10, 8, 10, 8),
                     Margin = new Thickness(0, 0, 0, 6),
