@@ -15,5 +15,8 @@ namespace SpieRibbon.Contracts
 
         /// <summary>Per-tool version, e.g. "v0.1". Shown appended to the tooltip.</summary>
         public string Version { get; set; } = "v0.1";
+
+        /// <summary>Segoe MDL2 Assets glyph (see <see cref="ToolIcons"/>), or null for no icon.</summary>
+        public string IconGlyph { get; set; }
     }
 }

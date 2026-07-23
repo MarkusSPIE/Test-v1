@@ -26,6 +26,7 @@ namespace SpieRibbon.Algemeen
                             Label = "Load RFA's",
                             Tooltip = "Open the shared RFA library on the server.",
                             Version = "v0.1",
+                            IconGlyph = ToolIcons.Folder,
                             Action = () => OpenFolder(
                                 @"G:\SPIE_CET\6_All_disc\02_CAD\07_Revit\SPIE Engineering Hoek\SPIE_NLRS.v3.01\20 Libraries")
                         },
@@ -34,6 +35,7 @@ namespace SpieRibbon.Algemeen
                             Label = "SPIE Handleidingen",
                             Tooltip = "Open the SPIE manuals folder on the server.",
                             Version = "v0.1",
+                            IconGlyph = ToolIcons.Book,
                             Action = () => OpenFolder(
                                 @"G:\SPIE_CET\6_All_disc\02_CAD\07_Revit\SPIE Engineering Hoek\SPIE_Handleidingen")
                         }
@@ -49,6 +51,7 @@ namespace SpieRibbon.Algemeen
                             Label = "Export Schedule",
                             Tooltip = "Export one or more schedules from this project to Excel.",
                             Version = "v0.1",
+                            IconGlyph = ToolIcons.Upload,
                             Action = () => host.RunInRevitContext(ScheduleExporter.Run)
                         }
                     }

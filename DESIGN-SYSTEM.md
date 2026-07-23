@@ -35,6 +35,15 @@ guidelines - these two were pixel-sampled, not eyeballed, so they're the source 
   the tool rows would be.
 - **Footer**: centered, small (10px), muted gray - "Created by [initials] - [version label]".
 
+## Every window, not just the main toolbox
+
+Easy mistake (made it once already): applying this design system to the main toolbox window
+and then leaving every *sub*-dialog (Settings, a tool's own picker/options window, etc.) in
+plain default WPF styling. Every window the plugin ever shows gets the same title bar pattern -
+navy background, red accent dot, white title text - even small utility dialogs. When adding any
+new `Window`, check it against this file before considering it done, and specifically re-check
+every existing window whenever this design system itself changes.
+
 ## Numbering
 
 - Restarts at **1 for every category** (not a running count across the whole toolbox) - each
@@ -44,9 +53,13 @@ guidelines - these two were pixel-sampled, not eyeballed, so they're the source 
 ## Icons
 
 - One icon per tool, to the right of its number.
-- Native app: use **Segoe Fluent Icons** (Windows' built-in icon glyph font) - no custom asset
-  creation needed, renders natively, matches Windows' own look. Tint icons navy (`#003772`) to
-  match the header color, not the default system color.
+- Native app: use **Segoe MDL2 Assets** (not the newer Segoe Fluent Icons) - ships on every
+  Windows 10/11 machine, whereas Fluent Icons needs a Windows build a colleague might not have.
+  No custom asset creation needed. Codepoints for common glyphs are shared between the two
+  fonts, so this stays correct if Fluent Icons is ever adopted later. Tint icons navy
+  (`#003772`) to match the header color, not the default system color. Embed codepoints via
+  `char.ConvertFromUtf32(0xNNNN)` in C#, not `"\uNNNN"` string literals or raw pasted glyphs -
+  both have proven unreliable to write/transmit correctly.
 - Mockups/previews (e.g. in chat): Tabler outline icons are a fine stand-in when discussing
   layout before wiring up the real glyph font.
 - Pick an icon that represents the *action*, not the category (e.g. a folder icon for "open a

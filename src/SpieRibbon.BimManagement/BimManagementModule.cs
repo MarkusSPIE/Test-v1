@@ -22,6 +22,7 @@ namespace SpieRibbon.BimManagement
                             Label = "IFC Export (2GW)",
                             Tooltip = "Export selected views to IFC, setting Building Name to match each view before export.",
                             Version = "v0.1",
+                            IconGlyph = ToolIcons.Building,
                             Action = () => host.RunInRevitContext(IfcBatchExporter.Run)
                         }
                     }
