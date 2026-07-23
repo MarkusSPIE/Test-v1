@@ -42,6 +42,8 @@ through the next item(s) to confirm scope, list exactly what's about to be built
   projects.
 - Footer: "Created by MVS - Beta v{major}.{minor}.{patch}" - see "Versioning" below for how this
   number moves, separate from each tool's own `ToolItem.Version`.
+- Settings (gear icon in the title bar) has a "Patch notes" button - opens `CHANGELOG.md`
+  (embedded as a resource, shown in its own SpieChrome-styled window).
 - Deploy: `deploy\Build-Package.ps1` builds all 3 versions and stages
   `dist\SpieRibbon-Package\` (host/<year>, modules/<year>, Deploy-SpieRibbon.ps1, Install.bat,
   README.txt), then zips it. `deploy\Deploy-SpieRibbon.ps1` installs per-user, no admin rights -
@@ -141,7 +143,8 @@ one at a time rather than all at once - chat through scope before implementing e
 - Contract-version mismatch handling: for now, assume host and modules are always built and
   deployed together (same package), so version skew shouldn't occur in practice. Revisit if
   modules are ever versioned/shipped independently of the host.
-- Whether nested Expanders remain the right UI once there are 5 categories with real content
-  in each - reassess after Civil/E&I/HVAC get their first real tools.
+- Resolved: categories moved from nested Expanders to a vertical tab sidebar. Whether *groups
+  within* a category still work well as Expanders once one category has many tools/groups is
+  still open - reassess after Civil/E&I/HVAC get their first real tools.
 - Whether "IFC Export (2GW)" should be renamed/genericized if it turns out to be useful beyond
   the one project it's currently named after.
