@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using SpieRibbon.Chrome;
 
 namespace SpieRibbon.BimManagement.IfcExport
 {
@@ -13,6 +14,7 @@ namespace SpieRibbon.BimManagement.IfcExport
         public IfcExportWindow(List<ViewListItem> views)
         {
             InitializeComponent();
+            SpieChrome.Apply(this, TitleBarHost, "IFC export (2GW)");
             ViewListBox.ItemsSource = views;
 
             IfcVersionCombo.ItemsSource = IfcVersionOption.All;

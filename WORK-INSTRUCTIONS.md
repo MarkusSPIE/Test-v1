@@ -15,13 +15,19 @@ through the next item(s) to confirm scope, list exactly what's about to be built
 
 ## Current state (built and verified live in Revit 2024/2026 on the dev machine)
 
-- One ribbon button ("SPIE Toolbox") opens a floating, resizable, modeless WPF window.
+- One ribbon button ("SPIE Ribbon" - renamed from "SPIE Toolbox") opens a floating, resizable,
+  modeless WPF window with a custom navy title bar (native OS chrome is hidden entirely - see
+  DESIGN-SYSTEM.md's "Custom title bar" section).
 - **Module architecture is live**, not hardcoded tools:
   - `SpieRibbon.Contracts` - shared `ISpieModule` / `ISpieHost` / `ToolGroup` / `ToolItem`
     (`ToolItem.Version`, e.g. `"v0.1"` - set explicitly on every tool, shown in its tooltip).
+  - `SpieRibbon.Ui` (namespace `SpieRibbon.Chrome`) - shared custom-title-bar helper
+    (`SpieChrome.Apply`) and brand color brushes (`SpieColors`), used by the host and every
+    module's own dialogs. Deployed once in the host folder, same pattern as Contracts.dll.
   - `SpieRibbon` (host) - discovers + loads modules from `%AppData%\SpieRibbon\Modules\<year>\`,
-    renders category (module) > group > tool, owns the shared `ExternalEvent` Revit-context
-    runner, owns settings (enable/disable per module, **disabled by default** for new modules).
+    renders category (module) > group > tool via a vertical tab sidebar, owns the shared
+    `ExternalEvent` Revit-context runner, owns settings (enable/disable per module, **disabled
+    by default** for new modules).
   - `SpieRibbon.Algemeen` - Get Started (Load RFA's, SPIE Handleidingen - open server folders),
     Import/Export (Export Schedule -> .xlsx via ClosedXML).
   - `SpieRibbon.BimManagement` - Import/Export (**IFC Export (2GW)** - pick IFC settings +
@@ -32,7 +38,7 @@ through the next item(s) to confirm scope, list exactly what's about to be built
   - `SpieRibbon.Civil`, `SpieRibbon.EnI`, `SpieRibbon.Hvac` - placeholder modules, empty
     `BuildGroups()`.
 - Multi-targeted per Revit version (net48 for 2024, net8.0-windows for 2025/2026) via
-  `Directory.Build.props` + MSBuild configs `Debug/Release R24/R25/R26`, shared across all 7
+  `Directory.Build.props` + MSBuild configs `Debug/Release R24/R25/R26`, shared across all 8
   projects.
 - Footer: "Created by MVS - Beta v0.1" (bump `Application.VersionLabel` when versioning up -
   this is the overall product version, separate from each tool's own `ToolItem.Version`).

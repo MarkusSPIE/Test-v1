@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using SpieRibbon.Chrome;
 
 namespace SpieRibbon.Algemeen.ExportSchedule
 {
@@ -11,6 +12,7 @@ namespace SpieRibbon.Algemeen.ExportSchedule
         public ScheduleExportWindow(List<ScheduleListItem> schedules)
         {
             InitializeComponent();
+            SpieChrome.Apply(this, TitleBarHost, "Export schedule");
             ScheduleListBox.ItemsSource = schedules;
         }
 

@@ -13,8 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- Host deploys the one and only Contracts.dll; modules reference it WITHOUT copying. -->
+    <!-- Host deploys the one and only copy of each; modules reference these WITHOUT copying. -->
     <ProjectReference Include="..\SpieRibbon.Contracts\SpieRibbon.Contracts.csproj" />
+    <ProjectReference Include="..\SpieRibbon.Ui\SpieRibbon.Ui.csproj" />
   </ItemGroup>
 
 </Project>

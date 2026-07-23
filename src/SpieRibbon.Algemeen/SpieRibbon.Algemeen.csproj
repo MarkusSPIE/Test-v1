@@ -15,8 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- Private=false: the host owns the single Contracts.dll; a duplicate would break type identity. -->
+    <!-- Private=false: the host owns the single copy of each; a duplicate would break type identity (Contracts) or just bloat the module folder needlessly (Ui). -->
     <ProjectReference Include="..\SpieRibbon.Contracts\SpieRibbon.Contracts.csproj" Private="false" />
+    <ProjectReference Include="..\SpieRibbon.Ui\SpieRibbon.Ui.csproj" Private="false" />
   </ItemGroup>
 
 </Project>

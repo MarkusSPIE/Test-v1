@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>SpieRibbon.Ui</AssemblyName>
+    <RootNamespace>SpieRibbon.Chrome</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Private=false: the host owns the single deployed copy; a duplicate per module isn't needed
+         (no cross-assembly type-identity constraint like Contracts has) but keeps the pattern
+         consistent and avoids shipping this DLL redundantly in every module's output folder. -->
+    <ProjectReference Include="..\SpieRibbon.Contracts\SpieRibbon.Contracts.csproj" Private="false" />
+  </ItemGroup>
+
+</Project>

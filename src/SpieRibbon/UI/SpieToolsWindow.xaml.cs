@@ -6,14 +6,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using SpieRibbon.Contracts;
 using SpieRibbon.Core;
+using SpieRibbon.Chrome;
 
 namespace SpieRibbon.UI
 {
     public partial class SpieToolsWindow : Window
     {
         private static readonly FontFamily IconFont = new FontFamily("Segoe MDL2 Assets");
-        private static readonly SolidColorBrush NavyBrush = new SolidColorBrush(Color.FromRgb(0x00, 0x37, 0x72));
-        private static readonly SolidColorBrush RedBrush = new SolidColorBrush(Color.FromRgb(0xE3, 0x1C, 0x18));
+        private static readonly SolidColorBrush NavyBrush = SpieColors.Navy;
+        private static readonly SolidColorBrush RedBrush = SpieColors.Red;
         private static readonly SolidColorBrush SidebarInactiveBrush = new SolidColorBrush(Color.FromRgb(0x5A, 0x5A, 0x5A));
 
         private LoadedModule _selectedModule;
@@ -22,7 +23,27 @@ namespace SpieRibbon.UI
         {
             InitializeComponent();
             FooterText.Text = "Created by MVS - " + Application.VersionLabel;
-            SettingsGlyph.Text = ToolIcons.Settings;
+
+            StackPanel chromeButtons = SpieChrome.Apply(this, TitleBarHost, "SPIE Ribbon");
+
+            var settingsButton = new Button
+            {
+                Content = new TextBlock
+                {
+                    Text = ToolIcons.Settings,
+                    FontFamily = IconFont,
+                    FontSize = 14,
+                    Foreground = Brushes.White
+                },
+                Width = 32,
+                Height = 40,
+                Background = Brushes.Transparent,
+                BorderThickness = new Thickness(0),
+                Cursor = Cursors.Hand,
+                ToolTip = "Settings"
+            };
+            settingsButton.Click += SettingsButton_Click;
+            chromeButtons.Children.Insert(0, settingsButton);
         }
 
         /// <summary>Rebuilds the visible tree from the currently enabled modules.</summary>

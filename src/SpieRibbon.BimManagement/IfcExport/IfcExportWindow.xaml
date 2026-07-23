@@ -1,18 +1,13 @@
 <Window x:Class="SpieRibbon.BimManagement.IfcExport.IfcExportWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="SPIE Toolbox - IFC Export (2GW)"
+        Title="SPIE Ribbon - IFC Export (2GW)"
         Height="500" Width="420"
         WindowStartupLocation="CenterOwner"
-        ResizeMode="CanResizeWithGrip">
+        ResizeMode="CanResize">
     <DockPanel>
 
-        <Border DockPanel.Dock="Top" Background="#003772" Padding="14,10">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <Ellipse Width="14" Height="14" Fill="#E31C18" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                <TextBlock Text="IFC export (2GW)" Foreground="White" FontWeight="Medium" FontSize="14" VerticalAlignment="Center"/>
-            </StackPanel>
-        </Border>
+        <Border x:Name="TitleBarHost" DockPanel.Dock="Top"/>
 
         <Grid Margin="14">
             <Grid.RowDefinitions>

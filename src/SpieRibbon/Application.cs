@@ -6,6 +6,7 @@ using System.Reflection;
 using Autodesk.Revit.UI;
 using SpieRibbon.Core;
 using SpieRibbon.UI;
+using SpieRibbon.Chrome;
 
 namespace SpieRibbon
 {
@@ -29,6 +30,11 @@ namespace SpieRibbon
 
         public Result OnStartup(UIControlledApplication application)
         {
+            // Forces SpieRibbon.Ui.dll to load now, before any module code runs (modules
+            // reference it with Private=false, expecting the host's copy to already be
+            // resolvable). Same reasoning as Host/Contracts being wired up here first.
+            _ = typeof(SpieChrome);
+
             _runner = new RevitContextRunner();
             _runner.Initialize();
             Host = new SpieHost(_runner);
@@ -53,11 +59,11 @@ namespace SpieRibbon
 
             var openToolboxButton = new PushButtonData(
                 "OpenToolbox",
-                "SPIE" + Environment.NewLine + "Toolbox",
+                "SPIE" + Environment.NewLine + "Ribbon",
                 assemblyPath,
                 "SpieRibbon.Commands.OpenToolboxCommand")
             {
-                ToolTip = "Open the SPIE toolbox - a floating, resizable window with all SPIE tools."
+                ToolTip = "Open SPIE Ribbon - a floating, resizable window with all SPIE tools."
             };
             panel.AddItem(openToolboxButton);
 

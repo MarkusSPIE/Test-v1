@@ -3,19 +3,21 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using SpieRibbon.Core;
+using SpieRibbon.Chrome;
 
 namespace SpieRibbon.UI
 {
     public partial class SettingsWindow : Window
     {
         private static readonly FontFamily IconFont = new FontFamily("Segoe MDL2 Assets");
-        private static readonly SolidColorBrush NavyBrush = new SolidColorBrush(Color.FromRgb(0x00, 0x37, 0x72));
+        private static readonly SolidColorBrush NavyBrush = SpieColors.Navy;
 
         private readonly List<CheckBox> _checkBoxes = new List<CheckBox>();
 
         public SettingsWindow()
         {
             InitializeComponent();
+            SpieChrome.Apply(this, TitleBarHost, "Settings");
             BuildList();
         }
 
