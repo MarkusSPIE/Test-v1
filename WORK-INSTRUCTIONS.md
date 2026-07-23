@@ -72,6 +72,17 @@ e.g. `Beta v0.1.01`):
 - Every `ToolItem` must set `Version` explicitly (don't rely on the Contracts default silently) -
   see DESIGN-SYSTEM.md's "Every tool gets a version".
 
+**Patch notes** (`CHANGELOG.md`, shown in-app via Settings -> Patch notes):
+- **Every "big" version bump** (a hand-edited major/minor change in `deploy\VERSION.txt`) **gets
+  a bullet-point summary added to `CHANGELOG.md` as part of making that change** - not left for
+  later, same as updating this file's "Current state" section. Write it for the person using the
+  tool, not a developer: plain language, what's new and why they'd care - not commit-message
+  style, not implementation detail.
+- Routine auto-bumped patches don't need their own entry - they fold under the current
+  big-version heading. The changelog should read as "what's new since the last real update," not
+  a build log of every package that ever went out.
+- New heading per big version (e.g. `## v0.2`), most recent first, bullets underneath.
+
 ## Design conventions (apply these to all new work)
 
 ### Every tool gets a version

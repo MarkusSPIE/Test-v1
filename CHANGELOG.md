@@ -1,9 +1,11 @@
 # SPIE Ribbon - Patch Notes
 
-Shown in-app via Settings -> Patch notes. Add an entry here whenever you bump
-`deploy\VERSION.txt` for a real package - most recent first.
+Shown in-app via Settings -> Patch notes. One heading per "big" version bump (a hand-edited
+major/minor change in `deploy\VERSION.txt`), most recent first - not one per auto-bumped patch,
+that would just be a build log. Write bullets for the person using the tool, not a developer:
+what's new and why they'd care, not commit-message style.
 
-## v0.1 (unreleased patches since)
+## v0.1
 
 - Module architecture: SPIE Algemeen, SPIE BIM Management, and placeholder Civil / E&I / HVAC
   modules, each independently enable/disable-able via Settings (new modules start disabled).
