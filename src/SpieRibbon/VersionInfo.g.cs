@@ -5,6 +5,6 @@ namespace SpieRibbon
     // number). To do a "big" version bump, edit deploy\VERSION.txt directly, not this file.
     internal static class VersionInfo
     {
-        public const string Label = "Beta v0.1.01";
+        public const string Label = "Beta v0.1.02";
     }
 }
